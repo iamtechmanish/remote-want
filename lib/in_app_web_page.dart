@@ -22,6 +22,13 @@ class _InAppWebPageState extends State<InAppWebPage> {
       body: Stack(
         children: [
           InAppWebView(
+            androidOnPermissionRequest: (_, __, resources) async {
+              return PermissionRequestResponse(
+                resources: resources,
+                action: PermissionRequestResponseAction.GRANT,
+              );
+            },
+
             initialUrlRequest:
                 URLRequest(url: Uri.parse(widget.url)),
             onWebViewCreated: (InAppWebViewController controller) {
