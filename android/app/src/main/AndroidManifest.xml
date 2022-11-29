@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.remote_want.remote_want">
+    <uses-permission android:name="android.permission.INTERNET"/>
    <application
         android:label="remote_want"
         android:name="${applicationName}"
