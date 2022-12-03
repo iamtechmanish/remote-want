@@ -2,6 +2,7 @@ import 'package:bottom_bar/bottom_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'common_functions.dart';
 import 'in_app_web_page.dart';
@@ -89,10 +90,37 @@ class _MainActivityState extends State<MainActivity> {
           ),
           bottomNavigationBar: BottomBar(
             selectedIndex: currentPage,
-            onTap: (index){
-            setState(() {
+            onTap: (index) async {
+
+
+
+            if(index==0){
+              homeWebViewController.getUrl().then((value){
+                if(value.toString()!="https://remotewant.com/")
+                  homeWebViewController.loadUrl(urlRequest: URLRequest(url: Uri.parse("https://remotewant.com/")));
+              });
+            }
+
+            if(index==1){
+              jobsWebViewController.getUrl().then((value){
+                if(value.toString()!="https://remotewant.com/all-jobs/")
+                  jobsWebViewController.loadUrl(urlRequest: URLRequest(url: Uri.parse("https://remotewant.com/all-jobs/")));
+              });
+            }
+
+            if(index==2){
+              employersWebviewController.getUrl().then((value){
+                if(value.toString()!="https://remotewant.com/employers/")
+                  employersWebviewController.loadUrl(urlRequest: URLRequest(url: Uri.parse("https://remotewant.com/employers/")));
+
+              });
+            }
+            setState(()  {
               currentPage = index ;
+
             });
+
+
             },
             items: <BottomBarItem>[
               BottomBarItem(
